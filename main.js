@@ -200,10 +200,10 @@ document.addEventListener("DOMContentLoaded", function () {
       form.innerHTML = `
           <label for="title">Judul:</label>
           <input type="text" id="title" value="${bookTarget.title}" required>
-          
+          <br />
           <label for="author">Penulis:</label>
           <input type="text" id="author" value="${bookTarget.author}" required>
-          
+          <br />
           <label for="year">Tahun:</label>
           <input type="number" id="year" value="${bookTarget.year}" required>
           
