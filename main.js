@@ -1,5 +1,3 @@
-// Do your work here...
-// Do your work here...
 document.addEventListener("DOMContentLoaded", function () {
   const inputNewBook = document.getElementById("bookForm");
   inputNewBook.addEventListener("submit", function (ev) {
@@ -93,34 +91,34 @@ document.addEventListener("DOMContentLoaded", function () {
     bookItem.classList.add("listContainer");
     bookItem.append(bookItemTitle, bookItemAuthor, bookItemYear);
 
-    if (bookObject.isComplete == true) {
-      const bookIsCompleteButton = document.createElement("button");
-      bookIsCompleteButton.classList.add("move-to-notCompleted");
-      bookIsCompleteButton.innerText = "Baca Ulang";
-      bookIsCompleteButton.addEventListener("click", function () {
-        moveToNotCompleted(bookObject.id);
-      });
+    function createControlButton(text, className, clickHandler, testId) {
+      const button = document.createElement("button");
+      button.classList.add(className);
+      button.innerText = text;
+      button.addEventListener("click", clickHandler);
+      button.setAttribute("data-testid", testId);
+      return button;
+    }
 
-      const removeButton = document.createElement("button");
-      removeButton.classList.add("delete-book");
-      removeButton.innerText = "Hapus Buku";
-      removeButton.addEventListener("click", function () {
-        deleteBook(bookObject.id);
-      });
-
-      const editButton = document.createElement("button");
-      editButton.classList.add("edit-book");
-      editButton.innerText = "Edit Buku";
-      editButton.addEventListener("click", function () {
-        editBook(bookObject.id);
-      });
-
-      bookIsCompleteButton.setAttribute(
-        "data-testid",
+    if (bookObject.isComplete) {
+      const bookIsCompleteButton = createControlButton(
+        "Baca Ulang",
+        "move-to-notCompleted",
+        () => moveToNotCompleted(bookObject.id),
         "bookItemIsCompleteButton"
       );
-      removeButton.setAttribute("data-testid", "bookItemDeleteButton");
-      editButton.setAttribute("data-testid", "bookItemEditButton");
+      const removeButton = createControlButton(
+        "Hapus Buku",
+        "delete-book",
+        () => deleteBook(bookObject.id),
+        "bookItemDeleteButton"
+      );
+      const editButton = createControlButton(
+        "Edit Buku",
+        "edit-book",
+        () => editBook(bookObject.id),
+        "bookItemEditButton"
+      );
 
       const ctrlButton = document.createElement("div");
       ctrlButton.classList.add("ctrlButton");
@@ -128,33 +126,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
       bookItem.append(ctrlButton);
     } else {
-      const bookIsCompleteButton = document.createElement("button");
-      bookIsCompleteButton.classList.add("move-to-completed");
-      bookIsCompleteButton.innerText = "Selesai Dibaca";
-      bookIsCompleteButton.addEventListener("click", function () {
-        moveToCompleted(bookObject.id);
-      });
-
-      const removeButton = document.createElement("button");
-      removeButton.classList.add("delete-book");
-      removeButton.innerText = "Hapus Buku";
-      removeButton.addEventListener("click", function () {
-        deleteBook(bookObject.id);
-      });
-
-      const editButton = document.createElement("button");
-      editButton.classList.add("edit-book");
-      editButton.innerText = "Edit Buku";
-      editButton.addEventListener("click", function () {
-        editBook(bookObject.id);
-      });
-
-      bookIsCompleteButton.setAttribute(
-        "data-testid",
+      const bookIsCompleteButton = createControlButton(
+        "Selesai Dibaca",
+        "move-to-completed",
+        () => moveToCompleted(bookObject.id),
         "bookItemIsCompleteButton"
       );
-      removeButton.setAttribute("data-testid", "bookItemDeleteButton");
-      editButton.setAttribute("data-testid", "bookItemEditButton");
+      const removeButton = createControlButton(
+        "Hapus Buku",
+        "delete-book",
+        () => deleteBook(bookObject.id),
+        "bookItemDeleteButton"
+      );
+      const editButton = createControlButton(
+        "Edit Buku",
+        "edit-book",
+        () => editBook(bookObject.id),
+        "bookItemEditButton"
+      );
 
       const ctrlButton = document.createElement("div");
       ctrlButton.classList.add("ctrlButton");
@@ -167,13 +156,13 @@ document.addEventListener("DOMContentLoaded", function () {
     bookItem.setAttribute("data-testid", "bookItem");
 
     function moveToCompleted(bookId) {
-      const bookTarget = findBook(bookId);
+      const bookTarget = findBook(bookId); // Ensure you're getting the correct book object
 
       if (bookTarget == null) return;
 
       bookTarget.isComplete = true;
       document.dispatchEvent(new Event(RENDER_EVENT));
-      window.alert(`Buku "${bookObject.title}" telah selesai dibaca`);
+      window.alert(`Buku "${bookTarget.title}" telah selesai dibaca`);
       saveBookData();
     }
 
@@ -184,7 +173,135 @@ document.addEventListener("DOMContentLoaded", function () {
 
       bookTarget.isComplete = false;
       document.dispatchEvent(new Event(RENDER_EVENT));
-      window.alert(`Buku "${bookObject.title}" akan dibaca ulang`);
+      window.alert(`Buku "${bookTarget.title}" akan dibaca ulang`);
+      saveBookData();
+    }
+
+    function editBook(bookId) {
+      const bookContainer = document.querySelector(
+        `.listContainer[data-bookid="${bookId}"]`
+      );
+      if (!bookContainer) return;
+
+      const bookTarget = findBook(bookId);
+      if (!bookTarget) return;
+
+      const titleElement = bookContainer.querySelector(
+        '[data-testid="bookItemTitle"]'
+      );
+      const authorElement = bookContainer.querySelector(
+        '[data-testid="bookItemAuthor"]'
+      );
+      const yearElement = bookContainer.querySelector(
+        '[data-testid="bookItemYear"]'
+      );
+
+      const form = document.createElement("form");
+      form.innerHTML = `
+          <label for="title">Judul:</label>
+          <input type="text" id="title" value="${bookTarget.title}" required>
+          
+          <label for="author">Penulis:</label>
+          <input type="text" id="author" value="${bookTarget.author}" required>
+          
+          <label for="year">Tahun:</label>
+          <input type="number" id="year" value="${bookTarget.year}" required>
+          
+          <button type="submit">Simpan</button>
+          <button type="button" id="cancelEdit">Batal</button>
+      `;
+
+      const ctrlButtonContainer = bookContainer.querySelector(".ctrlButton");
+      ctrlButtonContainer.innerHTML = "";
+      ctrlButtonContainer.appendChild(form);
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const bookItemTitle = form.querySelector("#title").value;
+        const bookItemAuthor = form.querySelector("#author").value;
+        const bookItemYear = Number(form.querySelector("#year").value);
+
+        titleElement.innerText = bookItemTitle;
+        authorElement.innerText = "Penulis: " + bookItemAuthor;
+        yearElement.innerText = "Tahun: " + bookItemYear;
+
+        const bookTarget = findBook(bookId);
+        if (bookTarget) {
+          bookTarget.title = bookItemTitle;
+          bookTarget.author = bookItemAuthor;
+          bookTarget.year = bookItemYear;
+        }
+
+        ctrlButtonContainer.innerHTML = "";
+        const isComplete = bookTarget.isComplete;
+        renderControlButtons(ctrlButtonContainer, bookId, isComplete);
+        saveBookData();
+      });
+
+      document
+        .getElementById("cancelEdit")
+        .addEventListener("click", function () {
+          ctrlButtonContainer.innerHTML = "";
+          renderControlButtons(
+            ctrlButtonContainer,
+            bookId,
+            bookTarget.isComplete
+          );
+        });
+    }
+
+    function renderControlButtons(container, bookId, isComplete) {
+      container.innerHTML = "";
+
+      const buttonText = isComplete ? "Baca Ulang" : "Selesai Dibaca";
+      const toggleButton = createControlButton(
+        buttonText,
+        "bookItemIsCompleteButton",
+        () => {
+          if (isComplete) {
+            moveToNotCompleted(bookId);
+          } else {
+            moveToCompleted(bookId);
+          }
+        },
+        "bookItemIsCompleteButton"
+      );
+
+      const removeButton = createControlButton(
+        "Hapus Buku",
+        "delete-book",
+        () => deleteBook(bookId),
+        "bookItemDeleteButton"
+      );
+
+      const editButton = createControlButton(
+        "Edit Buku",
+        "edit-book",
+        () => editBook(bookId),
+        "bookItemEditButton"
+      );
+
+      container.append(toggleButton, removeButton, editButton);
+    }
+
+    function createControlButton(text, className, clickHandler, testId) {
+      const button = document.createElement("button");
+      button.classList.add(className);
+      button.innerText = text;
+      button.addEventListener("click", clickHandler);
+      button.setAttribute("data-testid", testId);
+      return button;
+    }
+
+    function deleteBook(bookId) {
+      const bookIndex = findBookIndex(bookId);
+
+      if (bookIndex === -1) return;
+
+      const bookTitle = bookList[bookIndex].title;
+      bookList.splice(bookIndex, 1);
+      document.dispatchEvent(new Event(RENDER_EVENT));
+      window.alert(`Data buku "${bookTitle}" berhasil dihapus`);
       saveBookData();
     }
 
@@ -195,17 +312,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
       return null;
-    }
-
-    function deleteBook(bookId) {
-      const bookTarget = findBookIndex(bookId);
-
-      if (bookTarget === -1) return;
-
-      bookList.splice(bookTarget, 1);
-      document.dispatchEvent(new Event(RENDER_EVENT));
-      window.alert(`Data buku "${bookObject.title}" berhasil dihapus`);
-      saveBookData();
     }
 
     function findBookIndex(bookId) {
