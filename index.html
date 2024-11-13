@@ -38,18 +38,17 @@
         <form id="bookForm" data-testid="bookForm">
           <div>
             <label for="bookFormTitle">Judul</label>
-            <input id="bookFormTitle" type="text" required data-testid="bookFormTitleInput"
-              placeholder="ex: Bumi Manusia" />
+            <input id="bookFormTitle" type="text" data-testid="bookFormTitleInput" placeholder="ex: Bumi Manusia" />
           </div>
           <div>
             <label for="bookFormAuthor">Penulis</label>
-            <input id="bookFormAuthor" type="text" required data-testid="bookFormAuthorInput"
+            <input id="bookFormAuthor" type="text" data-testid="bookFormAuthorInput"
               placeholder="ex: Pramoedya Ananta Toer" />
           </div>
           <div>
             <label for="bookFormYear">Tahun</label>
-            <input id="bookFormYear" type="number" required data-testid="bookFormYearInput" placeholder="1970 - 2024"
-              min="1970" max="2024" />
+            <input id="bookFormYear" type="number" data-testid="bookFormYearInput" placeholder="1970 - 2024" min="1970"
+              max="2024" />
           </div>
           <div>
             <label for="bookFormIsComplete">Selesai dibaca</label>
@@ -123,7 +122,20 @@
         </section>
       </div>
     </div>
+
+    <!-- Modal Dialog Buku HTML -->
+    <div id="resultModal" class="modal">
+      <div class="modal-inner">
+        <div class="modal-content" id="modal-content">
+          <p id="modalMessage"></p>
+          <button id="closeModal" class="modal-button">&times;</button>
+        </div>
+      </div>
+    </div>
   </main>
 </body>
 
 </html>
+
+<!-- Kurang pesan konfirmasi hapus data buku -->
+<!-- Kurang pesan rak buku kosong -->
