@@ -1,504 +1,642 @@
 *,
 ::after,
 ::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'DM Sans', sans-serif;
-    background-color: #eee;
-    color: #252525;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+  font-family: "DM Sans", sans-serif;
+  background-color: #eee;
+  color: #252525;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 header {
-    width: fit-content;
-    display: flex;
-    justify-content: start;
-    position: fixed;
-    top: 0;
-    left: 6rem;
+  width: fit-content;
+  display: flex;
+  justify-content: start;
+  position: fixed;
+  top: 0;
+  left: 6rem;
 }
 
 header h1 {
-    font-size: 40px;
-    margin: 4rem 6rem 1rem 6rem;
-    width: fit-content;
-    border-bottom: 2px solid #db2810;
+  font-size: 40px;
+  margin: 4rem 6rem 1rem 6rem;
+  width: fit-content;
+  border-bottom: 2px solid #db2810;
 }
 
 main {
-    padding: 0 6rem;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    overflow: hidden;
+  padding: 0 6rem;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
 }
 
 section h2 {
-    width: fit-content;
-    padding-left: .2rem;
-    border-left: 3px solid #db2810;
+  width: fit-content;
+  padding-left: 0.2rem;
+  border-left: 3px solid #db2810;
 }
 
 .leftSide {
-    width: 50%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: center;
-    align-items: center;
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
 }
 
 .leftSide form {
-    padding: .5rem;
-    width: 100%;
+  padding: 0.5rem;
+  width: 100%;
 }
 
 .inputBook {
-    width: 70%;
-    padding: 1rem;
-    margin: 1rem;
+  width: 70%;
+  padding: 1rem;
+  margin: 1rem;
 }
 
 #bookForm {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: .5rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.5rem;
 }
 
 #bookForm div {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 }
 
 #bookForm label {
-    width: 40%;
-    display: flex;
-    align-items: center;
+  width: 40%;
+  display: flex;
+  align-items: center;
 }
 
 #bookFormTitle,
 #bookFormAuthor,
 #bookFormYear {
-    width: 60%;
-    padding: .1rem;
+  width: 60%;
+  padding: 0.1rem;
 }
 
 #bookFormIsComplete:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #bookFormSubmit {
-    font-size: 14px;
-    padding: .4rem .3rem;
-    background-color: #252525;
-    color: #eee;
-    box-shadow: 0px 1px 4px #252525;
-    border: none;
-    border-radius: .3rem;
-    -webkit-border-radius: .3rem;
-    -moz-border-radius: .3rem;
-    -ms-border-radius: .3rem;
-    -o-border-radius: .3rem;
-    transition: all .2s ease-in-out;
-    -webkit-transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
-    -ms-transition: all .2s ease-in-out;
-    -o-transition: all .2s ease-in-out;
+  font-size: 14px;
+  padding: 0.4rem 0.3rem;
+  background-color: #252525;
+  color: #eee;
+  box-shadow: 0px 1px 4px #252525;
+  border: none;
+  border-radius: 0.3rem;
+  -webkit-border-radius: 0.3rem;
+  -moz-border-radius: 0.3rem;
+  -ms-border-radius: 0.3rem;
+  -o-border-radius: 0.3rem;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
 }
 
 #bookFormSubmit:hover {
-    cursor: pointer;
-    background-color: #db2810;
-    box-shadow: 0px 4px 10px #252525;
+  cursor: pointer;
+  background-color: #db2810;
+  box-shadow: 0px 4px 10px #252525;
 }
 
 .findBook {
-    width: 70%;
-    padding: 0 1rem;
+  width: 70%;
+  padding: 0 1rem;
 }
 
 #searchBook {
-    display: flex;
-    gap: 5px;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #searchBook input {
-    width: 100%;
-    padding: .1rem
+  width: 100%;
+  padding: 0.1rem;
 }
 
 #searchBook button {
-    padding: .2rem .4rem;
-    cursor: pointer;
-    border: none;
-    color: #db2810;
-    transition: all .2s ease-in-out;
-    -webkit-transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
-    -ms-transition: all .2s ease-in-out;
-    -o-transition: all .2s ease-in-out;
+  padding: 0.2rem 0.4rem;
+  cursor: pointer;
+  border: none;
+  color: #db2810;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
 }
 
 #searchBook button:hover {
-    box-shadow: 0px 4px 10px #252525;
-    background-color: #db2810;
-    color: #eee;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
+  box-shadow: 0px 4px 10px #252525;
+  background-color: #db2810;
+  color: #eee;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
 }
 
 #searchBook i {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .rightSide {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .rightSideInside {
-    height: fit-content;
-    width: 90%;
-    margin: 4rem 0;
+  height: fit-content;
+  width: 90%;
+  margin: 4rem 0;
 }
 
 .rightSideHeader {
-    display: flex;
-    text-align: center;
-    cursor: no-drop;
+  display: flex;
+  text-align: center;
+  cursor: no-drop;
 }
 
 .rightSideHeader button {
-    width: 50%;
-    font-size: 18px;
-    color: #fff;
-    background-color: #ddd;
-    border: none;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
-    -webkit-transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
-    -ms-transition: all .2s ease-in-out;
-    -o-transition: all .2s ease-in-out;
+  width: 50%;
+  font-size: 18px;
+  color: #fff;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
 }
 
 .rightSideHeader button:hover {
-    color: #db2810;
+  color: #db2810;
 }
 
 .notCompletedRead,
 .completedRead {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 .notCompletedRead h2,
 .completedRead h2 {
-    font-size: 18px;
-    border-left: none;
-    color: #eee;
-    background-color: #db2810;
-    height: auto;
-    min-width: 50%;
-    max-width: auto;
-    padding: .4rem .8rem;
+  font-size: 18px;
+  border-left: none;
+  color: #eee;
+  background-color: #db2810;
+  height: auto;
+  min-width: 50%;
+  max-width: auto;
+  padding: 0.4rem 0.8rem;
 }
 
 .notCompletedRead #incompleteBookList,
 .completedRead #completeBookList {
-    width: 100%;
-    height: 75vh;
-    box-shadow: 0px 1px 10px #252525 inset;
-    border-bottom-left-radius: .3rem;
-    border-bottom-right-radius: .3rem;
-    background-color: #fff;
-    overflow-y: scroll;
-    padding-bottom: .5rem;
+  width: 100%;
+  height: 75vh;
+  box-shadow: 0px 1px 10px #252525 inset;
+  border-bottom-left-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+  background-color: #fff;
+  overflow-y: scroll;
+  padding-bottom: 0.5rem;
 }
 
 .listContainer {
-    margin: .1rem .7rem;
-    padding: .5rem .7rem;
-    border-bottom: 1px solid #db2810;
+  margin: 0.1rem 0.7rem;
+  padding: 0.5rem 0.7rem;
+  border-bottom: 1px solid #db2810;
 }
 
 .ctrlButton {
-    width: 100%;
-    display: flex;
-    justify-content: end;
-    gap: .5rem;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  gap: 0.5rem;
 }
 
-.ctrlButton button {
-    cursor: pointer;
-    padding: .2rem .5rem;
-    background-color: #252525;
-    color: #eee;
-    border: none;
-    border-radius: .3rem;
-    -webkit-border-radius: .3rem;
-    -moz-border-radius: .3rem;
-    -ms-border-radius: .3rem;
-    -o-border-radius: .3rem;
-    transition: all .2s ease-in-out;
-    -webkit-transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
-    -ms-transition: all .2s ease-in-out;
-    -o-transition: all .2s ease-in-out;
+.ctrlButton button,
+.close {
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  background-color: #252525;
+  color: #eee;
+  border: none;
+  border-radius: 0.3rem;
+  -webkit-border-radius: 0.3rem;
+  -moz-border-radius: 0.3rem;
+  -ms-border-radius: 0.3rem;
+  -o-border-radius: 0.3rem;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
 }
 
-.ctrlButton button:hover {
-    background-color: #db2810;
+.ctrlButton button:hover,
+.close:hover {
+  background-color: #db2810;
 }
 
 .completedRead {
-    display: none;
+  display: none;
 }
 
+.edit-form {
+  background-color: #ddd;
+  border-radius: 0.2rem;
+  padding: 0.4rem 0.6rem;
+  width: 100%;
+}
+
+.edit-book-data {
+  display: flex;
+  width: 100%;
+}
+
+.edit-form label {
+  width: 20%;
+}
+
+.edit-form input {
+  width: 60%;
+}
+
+#emptyContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
+}
+
+#emptyPicture {
+  font-size: 4rem;
+}
+
+/* MODAL DIALOG */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-inner {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background-color: #fefefe;
+  padding: 3rem;
+  border-radius: 0.5rem;
+  width: 35%;
+}
+
+#modalMessage {
+  width: fit-content;
+  text-align: center;
+  padding: 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-bottom: 1px solid #db2810;
+}
+
+.modal-button {
+  color: #eee;
+  font-weight: bold;
+  background-color: #252525;
+  border: none;
+  border-radius: 0.3rem;
+  padding: 0.2rem 0.8rem;
+  font-size: 1.3rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.modal-button:hover,
+.modal-button:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+/* MODAL DIALOG END */
+
 @media screen and (max-width: 1024px) {
-    header h1 {
-        font-size: 2rem;
-        margin: 4rem 6rem 1rem 3rem;
-    }
+  header h1 {
+    font-size: 2rem;
+    margin: 4rem 6rem 1rem 3rem;
+  }
 
-    main {
-        font-size: .9rem;
-        padding: 0 3.5rem;
-    }
+  main {
+    font-size: 0.9rem;
+    padding: 0 3.5rem;
+  }
 
-    #bookFormSubmit {
-        font-size: .8rem;
-    }
+  #bookFormSubmit {
+    font-size: 0.8rem;
+  }
 
-    .rightSideHeader h2,
-    .rightSideHeader button {
-        font-size: 1rem;
-    }
+  .rightSideHeader h2,
+  .rightSideHeader button {
+    font-size: 1rem;
+  }
+
+  /* MODAL DIALOG */
+  #modalMessage {
+    font-size: .9rem;
+  }
+
+  .modal-button {
+    padding: 0.2rem 0.5rem;
+    font-size: 1.1rem;
+  }
+  /* MODAL DIALOG END */
 }
 
 @media screen and (min-height: 1300px) {
-    header {
-        position: fixed;
-        width: 100%;
-        left: 0;
-        justify-content: center;
-        padding: 1rem;
-        backdrop-filter: blur(15px);
-    }
+  header {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    justify-content: center;
+    padding: 1rem;
+    backdrop-filter: blur(15px);
+  }
 
-    header h1 {
-        margin: 0;
-    }
+  header h1 {
+    margin: 0;
+  }
 
-    main {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 6rem;
-    }
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 6rem;
+  }
 
-    .leftSide {
-        height: 50%;
-        max-height: fit-content;
-    }
+  .leftSide {
+    height: 50%;
+    max-height: fit-content;
+  }
 
-    .leftSide,
-    .rightSide,
-    .notCompletedRead,
-    .completedRead {
-        width: 80%;
-    }
+  .leftSide,
+  .rightSide,
+  .notCompletedRead,
+  .completedRead {
+    width: 80%;
+  }
 
-    .rightSideInside {
-        display: flex;
-        justify-content: center;
-        margin: 0;
-    }
+  .rightSideInside {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
 
-    .notCompletedRead #incompleteBookList,
-    .completedRead #completeBookList {
-        width: 100%;
-        height: 60vh;
-    }
+  .notCompletedRead #incompleteBookList,
+  .completedRead #completeBookList {
+    width: 100%;
+    height: 60vh;
+  }
+
+  /* MODAL DIALOG */
+  .modal-content {
+    width: 45%;
+  }
+
+  #modalMessage {
+    font-size: 1.3rem;
+  }
+
+  .modal-button {
+    padding: 0.2rem 0.8rem;
+    font-size: 1.3rem;
+  }
+  /* MODAL DIALOG END */
 }
 
 @media screen and (max-width: 900px) {
-    header {
-        position: fixed;
-        width: 100%;
-        left: 0;
-        justify-content: center;
-        padding: 1rem;
-        backdrop-filter: blur(15px);
-    }
+  header {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    justify-content: center;
+    padding: 1rem;
+    backdrop-filter: blur(15px);
+  }
 
-    header h1 {
-        margin: 0;
-    }
+  header h1 {
+    margin: 0;
+  }
 
-    main {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 6rem;
-    }
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 6rem;
+  }
 
-    .leftSide {
-        height: 40%;
-        max-height: fit-content;
-    }
+  .leftSide {
+    height: 40%;
+    max-height: fit-content;
+  }
 
-    .leftSide,
-    .rightSide,
-    .notCompletedRead,
-    .completedRead {
-        width: 90%;
-    }
+  .leftSide,
+  .rightSide,
+  .notCompletedRead,
+  .completedRead {
+    width: 90%;
+  }
 
-    .rightSideInside {
-        display: flex;
-        justify-content: center;
-        margin: 0;
-    }
+  .rightSideInside {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
 
-    .notCompletedRead #incompleteBookList,
-    .completedRead #completeBookList {
-        width: 100%;
-        height: 55vh;
-    }
+  .notCompletedRead #incompleteBookList,
+  .completedRead #completeBookList {
+    width: 100%;
+    height: 55vh;
+  }
+
+  /* MODAL DIALOG */
+  .modal-content {
+    width: 75%;
+  }
+
+  #modalMessage {
+    font-size: 1rem;
+  }
+
+  .modal-button {
+    padding: 0.2rem 0.5rem;
+    font-size: 1rem;
+  }
+  /* MODAL DIALOG END */
 }
 
 @media screen and (max-width: 800px) {
-    .leftSide {
-        height: 40%;
-        max-height: fit-content;
-    }
+  .leftSide {
+    height: 40%;
+    max-height: fit-content;
+  }
 
-    .rightSideInside {
-        margin: 1.5rem 0;
-    }
+  .rightSideInside {
+    margin: 1.5rem 0;
+  }
 
-    .notCompletedRead #incompleteBookList,
-    .completedRead #completeBookList {
-        height: 45vh;
-    }
+  .notCompletedRead #incompleteBookList,
+  .completedRead #completeBookList {
+    height: 45vh;
+  }
 }
 
 @media screen and (max-width: 550px) {
-    main {
-        margin: 0;
-        padding: 0;
-        padding-top: 5rem;
-    }
+  main {
+    margin: 0;
+    padding: 0;
+    padding-top: 5rem;
+  }
 
-    .leftSide {
-        height: 40%;
-        max-height: fit-content;
-    }
+  .leftSide {
+    height: 40%;
+    max-height: fit-content;
+  }
 
-    .leftSide, .rightSide {
-        width: 100%;
-    }
+  .leftSide,
+  .rightSide {
+    width: 100%;
+  }
 
-    .inputBook, .findBook {
-        width: 90%;
-        margin: 0;
-    }
+  .inputBook,
+  .findBook {
+    width: 90%;
+    margin: 0;
+  }
 
-    .rightSideInside {
-        margin: 0;
-    }
+  .rightSideInside {
+    margin: 0;
+  }
 
-    .notCompletedRead #incompleteBookList,
-    .completedRead #completeBookList {
-        height: 50vh;
-    }
+  .notCompletedRead #incompleteBookList,
+  .completedRead #completeBookList {
+    height: 50vh;
+  }
 
-    .rightSideHeader h2,
-    .rightSideHeader button {
-        font-size: .8rem;
-    }
+  .rightSideHeader h2,
+  .rightSideHeader button {
+    font-size: 0.8rem;
+  }
 
-    .ctrlButton {
-        margin-top: .3rem;
-        justify-content: center;
-    }
+  .ctrlButton {
+    margin-top: 0.3rem;
+    justify-content: center;
+  }
 }
 
 @media screen and (max-width: 400px) and (max-height: 700px) {
-    header {
-        padding: .8rem;
-    }
+  header {
+    padding: 0.8rem;
+  }
 
-    header h1 {
-        font-size: 1.4rem;
-    }
+  header h1 {
+    font-size: 1.4rem;
+  }
 
-    main {
-        padding-top: 4rem;
-    }
+  main {
+    padding-top: 4rem;
+  }
 
-    .leftSide {
-        height: 50%;
-        max-height: fit-content;
-    }
+  .leftSide {
+    height: 50%;
+    max-height: fit-content;
+  }
 
-    .leftSide h2 {
-        font-size: 1.2rem;
-    }
+  .leftSide h2 {
+    font-size: 1.2rem;
+  }
 
-    .rightSideHeader h2,
-    .rightSideHeader button {
-        font-size: .7rem;
-    }
+  .rightSideHeader h2,
+  .rightSideHeader button {
+    font-size: 0.7rem;
+  }
 
-    .notCompletedRead #incompleteBookList,
-    .completedRead #completeBookList {
-        height: 40vh;
-    }
+  .notCompletedRead #incompleteBookList,
+  .completedRead #completeBookList {
+    height: 40vh;
+  }
 
-    .ctrlButton button {
-        width: 4rem;
-        font-size: .8rem;
-    }
+  .ctrlButton button {
+    width: 4rem;
+    font-size: 0.8rem;
+  }
 }
 
 @media screen and (min-width: 350px) and (min-height: 700px) and (max-height: 750px) {
-    .leftSide {
-        height: 50%;
-        max-height: fit-content;
-    }
+  .leftSide {
+    height: 50%;
+    max-height: fit-content;
+  }
 
-    .notCompletedRead #incompleteBookList,
-    .completedRead #completeBookList {
-        height: 40vh;
-    }
+  .notCompletedRead #incompleteBookList,
+  .completedRead #completeBookList {
+    height: 40vh;
+  }
 }
 
 @media screen and (max-width: 400px) and (min-height: 750px) {
-    .leftSide {
-        height: 40%;
-        max-height: fit-content;
-    }
+  .leftSide {
+    height: 40%;
+    max-height: fit-content;
+  }
 
-    .notCompletedRead #incompleteBookList,
-    .completedRead #completeBookList {
-        height: 45vh;
-    }
+  .notCompletedRead #incompleteBookList,
+  .completedRead #completeBookList {
+    height: 45vh;
+  }
 }
