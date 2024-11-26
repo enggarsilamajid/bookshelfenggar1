@@ -247,15 +247,56 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function deleteBook(bookId) {
-      const bookIndex = findBookIndex(bookId);
+      // Temukan buku berdasarkan bookId
+      const bookTarget = findBook(bookId);
 
-      if (bookIndex === -1) return;
+      if (bookTarget == null) return; // Jika buku tidak ditemukan, keluar dari fungsi
 
-      const bookTitle = bookList[bookIndex].title;
-      bookList.splice(bookIndex, 1);
-      document.dispatchEvent(new Event(RENDER_EVENT));
-      window.alert(`Data buku "${bookTitle}" berhasil dihapus`);
-      saveBookData();
+      const modalConfirmMessage = `Yakin ingin hapus data buku "${bookTarget.title}"?`;
+
+      // Menampilkan pesan konfirmasi di modal
+      document.getElementById("modalConfirmMessage").textContent =
+        modalConfirmMessage;
+      const confirmModal = document.getElementById("confirmModal");
+      confirmModal.style.display = "block";
+
+      // Fungsi untuk mengonfirmasi penghapusan buku
+      const confirmDelete = function () {
+        // Mencari index buku berdasarkan bookId
+        const bookIndex = findBookIndex(bookId);
+        if (bookIndex === -1) return; // Jika buku tidak ditemukan, keluar dari fungsi
+
+        const bookTitle = bookList[bookIndex].title;
+
+        // Hapus buku hanya pada index yang ditemukan
+        bookList.splice(bookIndex, 1); // Menghapus satu buku pada index yang tepat
+
+        // Panggil event untuk me-render ulang tampilan
+        document.dispatchEvent(new Event(RENDER_EVENT));
+
+        // Tampilkan pemberitahuan bahwa buku berhasil dihapus
+        const modalMessage = `Data buku "${bookTarget.title}" telah dihapus`;
+
+        document.getElementById("modalMessage").textContent = modalMessage;
+        document.getElementById("resultModal").style.display = "block";
+
+        // Simpan data buku yang telah diperbarui
+        saveBookData();
+
+        // Menutup modal setelah penghapusan
+        confirmModal.style.display = "none";
+      };
+
+      // Menambahkan event listener hanya sekali
+      const confirmDeleteButton = document.getElementById("confirmDelete");
+      confirmDeleteButton.addEventListener("click", confirmDelete);
+
+      // Menambahkan event listener untuk membatalkan penghapusan
+      const cancelDeleteButton = document.getElementById("cancelDelete");
+      cancelDeleteButton.addEventListener("click", function cancelDelete() {
+        confirmDeleteButton.removeEventListener("click", confirmDelete);
+        confirmModal.style.display = "none"; // Menutup modal jika dibatalkan
+      });
     }
 
     function editBook(bookId) {
@@ -403,20 +444,52 @@ document.addEventListener("DOMContentLoaded", function () {
     return bookItem;
   }
 
+  // function createEmptySearchMessage() {
+  //   const emptyContainer = document.createElement("div");
+  //   const emptyPic = document.createElement("i");
+  //   const emptyList = document.createElement("p");
+
+  //   emptyPic.setAttribute("class", "fas fa-folder-open");
+  //   emptyPic.setAttribute("id", "emptyPicture");
+  //   emptyList.textContent = "Buku yang dicari tidak ditemukan di rak ini.";
+
+  //   emptyContainer.append(emptyPic, emptyList);
+  //   emptyContainer.setAttribute("id", "emptySearch");
+  //   return emptyContainer;
+  // }
+
   document
     .getElementById("searchSubmit")
     .addEventListener("click", function (ev) {
       ev.preventDefault();
       const searchBook = document
         .getElementById("searchBookTitle")
-        .value.toLowerCase();
+        .value.toLowerCase()
+        .trim(); // Ensure whitespace is trimmed
+
+      // Skip search if input is empty
+      if (searchBook === "") {
+        // Show all books and remove "no results" message
+        const bookSearchListByTitle = document.querySelectorAll(
+          ".listContainer > h3"
+        );
+        for (let searchResult of bookSearchListByTitle) {
+          searchResult.parentElement.style.display = "block";
+        }
+        const existingMessage = document.getElementById("emptySearch");
+        if (existingMessage) {
+          existingMessage.remove();
+        }
+        return;
+      }
+
       const bookSearchListByTitle = document.querySelectorAll(
         ".listContainer > h3"
       );
-
       let foundCount = 0;
 
-      for (searchResult of bookSearchListByTitle) {
+      // Iterate over the book titles
+      for (let searchResult of bookSearchListByTitle) {
         if (searchResult.innerText.toLowerCase().includes(searchBook)) {
           searchResult.parentElement.style.display = "block";
           foundCount++;
@@ -425,16 +498,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
-      if (searchBook != "") {
-        // Menampilkan pesan dalam modal
-        const modalMessage =
-          foundCount > 0
-            ? `Ditemukan ${foundCount} buku yang cocok.`
-            : "Tidak ditemukan buku yang dicari.";
-
-        document.getElementById("modalMessage").textContent = modalMessage;
-        document.getElementById("resultModal").style.display = "block";
-      }
+      // Show the modal message based on search results
+      const modalMessage =
+        foundCount > 0
+          ? `Ditemukan ${foundCount} buku yang cocok.`
+          : "Tidak ditemukan buku yang dicari.";
+      document.getElementById("modalMessage").textContent = modalMessage;
+      document.getElementById("resultModal").style.display = "block";
     });
 
   // Menutup modal jika tombol close ditekan
