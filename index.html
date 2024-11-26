@@ -127,8 +127,21 @@
     <div id="resultModal" class="modal">
       <div class="modal-inner">
         <div class="modal-content" id="modal-content">
-          <p id="modalMessage"></p>
+          <p id="modalMessage" class="modalDialogMessage"></p>
           <button id="closeModal" class="modal-button">&times;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Konfirmasi HTML -->
+    <div id="confirmModal" class="modal">
+      <div class="modal-inner">
+        <div class="modal-content" id="modal-confirm-content">
+          <p id="modalConfirmMessage" class="modalDialogMessage"></p>
+          <div id="confirmButtonContainer">
+            <button id="confirmDelete" class="confirm-modal-button">Ya. Hapus Buku!</button>
+            <button id="cancelDelete" class="confirm-modal-button">Tidak. Batalkan!</button>
+          </div>
         </div>
       </div>
     </div>
@@ -136,6 +149,3 @@
 </body>
 
 </html>
-
-<!-- Kurang pesan konfirmasi hapus data buku -->
-<!-- Kurang pesan rak buku kosong -->
