@@ -374,6 +374,7 @@ section h2 {
 }
 
 #confirmButtonContainer>button {
+  padding: .5rem 1rem;
   font-size: 16px;
 }
 /* MODAL DIALOG END */
