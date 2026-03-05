@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -7,6 +7,12 @@
   <title>Bookshelf App</title>
 
   <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100..1000&display=swap" rel="stylesheet">
+
   <script defer src="main.js"></script>
 </head>
 
@@ -18,91 +24,178 @@
 
 <main>
 
-  <!-- FORM TAMBAH / EDIT BUKU -->
-  <section class="inputBook">
-    <h2>Tambah Buku</h2>
+  <!-- LEFT SIDE -->
+  <div class="leftSide">
 
-    <form id="bookForm">
+    <!-- SEARCH -->
+    <section class="findBook">
+      <h2>Cari Buku</h2>
 
-      <div>
-        <label for="bookFormTitle">Judul</label>
+      <form id="searchBook">
+
+        <label for="searchBookTitle">Judul</label>
+
         <input
-          id="bookFormTitle"
+          id="searchBookTitle"
           type="text"
-          required
+          placeholder="...Ketik Judul Buku"
         >
-      </div>
 
-      <div>
-        <label for="bookFormAuthor">Penulis</label>
-        <input
-          id="bookFormAuthor"
-          type="text"
-          required
+        <button type="submit">
+          🔍
+        </button>
+
+      </form>
+    </section>
+
+
+    <!-- INPUT BOOK -->
+    <section class="inputBook">
+
+      <h2>Tambah Buku Baru</h2>
+
+      <form id="bookForm">
+
+        <div>
+          <label for="bookFormTitle">Judul</label>
+
+          <input
+            id="bookFormTitle"
+            type="text"
+            required
+          >
+        </div>
+
+        <div>
+          <label for="bookFormAuthor">Penulis</label>
+
+          <input
+            id="bookFormAuthor"
+            type="text"
+            required
+          >
+        </div>
+
+        <div>
+          <label for="bookFormYear">Tahun</label>
+
+          <input
+            id="bookFormYear"
+            type="number"
+            required
+          >
+        </div>
+
+        <div>
+          <label for="bookFormIsComplete">Selesai dibaca</label>
+
+          <input
+            id="bookFormIsComplete"
+            type="checkbox"
+          >
+        </div>
+
+        <button
+          id="bookFormSubmit"
+          type="submit"
         >
-      </div>
+          Masukkan Buku ke rak
+        </button>
 
-      <div>
-        <label for="bookFormYear">Tahun</label>
-        <input
-          id="bookFormYear"
-          type="number"
-          required
-        >
-      </div>
+      </form>
 
-      <div>
-        <label for="bookFormIsComplete">Selesai dibaca</label>
-        <input
-          id="bookFormIsComplete"
-          type="checkbox"
-        >
-      </div>
+    </section>
 
-      <button type="submit">
-        Simpan Buku
-      </button>
-
-    </form>
-  </section>
+  </div>
 
 
-  <!-- SWITCH RAK -->
-  <section class="switchShelf">
+  <!-- RIGHT SIDE -->
+  <div class="rightSide">
 
-    <button id="showUnread">
-      Belum selesai dibaca
-    </button>
+    <div class="rightSideInside">
 
-    <button id="showComplete">
-      Selesai dibaca
-    </button>
+      <!-- BELUM SELESAI -->
+      <section class="notCompletedRead">
 
-  </section>
+        <div class="rightSideHeader">
+
+          <h2>Belum selesai dibaca</h2>
+
+          <button id="changeToCompleteButton">
+            Selesai dibaca
+          </button>
+
+        </div>
+
+        <div id="incompleteBookList"></div>
+
+      </section>
 
 
-  <!-- DAFTAR BUKU -->
-  <section class="bookListSection">
+      <!-- SELESAI -->
+      <section class="completedRead">
 
-    <div id="bookList"></div>
+        <div class="rightSideHeader">
 
-  </section>
+          <button id="changeToNotCompleteButton">
+            Belum selesai dibaca
+          </button>
+
+          <h2>Selesai dibaca</h2>
+
+        </div>
+
+        <div id="completeBookList"></div>
+
+      </section>
+
+    </div>
+
+  </div>
 
 </main>
 
 
-<!-- MODAL PESAN -->
+<!-- MODAL RESULT -->
 <div id="resultModal" class="modal">
 
   <div class="modal-inner">
 
     <div class="modal-content">
 
-      <p id="modalMessage"></p>
+      <p id="modalMessage" class="modalDialogMessage"></p>
 
-      <button id="closeModal">
+      <button id="closeModal" class="modal-button">
         Tutup
       </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- MODAL CONFIRM -->
+<div id="confirmModal" class="modal">
+
+  <div class="modal-inner">
+
+    <div class="modal-content">
+
+      <p id="modalConfirmMessage" class="modalDialogMessage"></p>
+
+      <div id="confirmButtonContainer">
+
+        <button id="confirmDelete" class="confirm-modal-button">
+          Ya, hapus
+        </button>
+
+        <button id="cancelDelete" class="confirm-modal-button">
+          Batal
+        </button>
+
+      </div>
 
     </div>
 
