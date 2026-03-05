@@ -1,120 +1,114 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bookshelf App</title>
+<!DOCTYPE html>
+<html lang="id">
 
-    <link rel="stylesheet" href="style.css" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookshelf App</title>
 
-    <script defer src="main.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="main.js"></script>
+</head>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<body>
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"
-      rel="stylesheet"
-    />
+<header>
+  <h1>Bookshelf App</h1>
+</header>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-  </head>
+<main>
 
-  <body>
-    <header>
-      <h1>Bookshelf App</h1>
-    </header>
+  <!-- FORM TAMBAH / EDIT BUKU -->
+  <section class="inputBook">
+    <h2>Tambah Buku</h2>
 
-    <main>
-      <section class="inputBook">
-        <h2>Tambah Buku Baru</h2>
+    <form id="bookForm">
 
-        <form id="bookForm" data-testid="bookForm">
-          <div>
-            <label for="bookFormTitle">Judul</label>
-            <input
-              id="bookFormTitle"
-              type="text"
-              data-testid="bookFormTitleInput"
-              required
-            />
-          </div>
+      <div>
+        <label for="bookFormTitle">Judul</label>
+        <input
+          id="bookFormTitle"
+          type="text"
+          required
+        >
+      </div>
 
-          <div>
-            <label for="bookFormAuthor">Penulis</label>
-            <input
-              id="bookFormAuthor"
-              type="text"
-              data-testid="bookFormAuthorInput"
-              required
-            />
-          </div>
+      <div>
+        <label for="bookFormAuthor">Penulis</label>
+        <input
+          id="bookFormAuthor"
+          type="text"
+          required
+        >
+      </div>
 
-          <div>
-            <label for="bookFormYear">Tahun</label>
-            <input
-              id="bookFormYear"
-              type="number"
-              data-testid="bookFormYearInput"
-              required
-            />
-          </div>
+      <div>
+        <label for="bookFormYear">Tahun</label>
+        <input
+          id="bookFormYear"
+          type="number"
+          required
+        >
+      </div>
 
-          <div>
-            <label for="bookFormIsComplete">Selesai dibaca</label>
-            <input
-              id="bookFormIsComplete"
-              type="checkbox"
-              data-testid="bookFormIsCompleteCheckbox"
-            />
-          </div>
+      <div>
+        <label for="bookFormIsComplete">Selesai dibaca</label>
+        <input
+          id="bookFormIsComplete"
+          type="checkbox"
+        >
+      </div>
 
-          <button
-            id="bookFormSubmit"
-            type="submit"
-            data-testid="bookFormSubmitButton"
-          >
-            Masukkan Buku ke rak
-            <span id="bookStatusButton">Belum selesai dibaca</span>
-          </button>
-        </form>
-      </section>
+      <button type="submit">
+        Simpan Buku
+      </button>
 
-      <section class="findBook">
-        <h2>Cari Buku</h2>
+    </form>
+  </section>
 
-        <form id="searchBook" data-testid="searchBookForm">
-          <input
-            id="searchBookTitle"
-            type="text"
-            placeholder="Cari judul buku"
-            data-testid="searchBookFormTitleInput"
-          />
 
-          <button
-            id="searchSubmit"
-            type="submit"
-            data-testid="searchBookFormSubmitButton"
-          >
-            <i class="fas fa-search"></i>
-          </button>
-        </form>
-      </section>
+  <!-- SWITCH RAK -->
+  <section class="switchShelf">
 
-      <section>
-        <h2>Belum selesai dibaca</h2>
+    <button id="showUnread">
+      Belum selesai dibaca
+    </button>
 
-        <div id="incompleteBookList" data-testid="incompleteBookList"></div>
-      </section>
+    <button id="showComplete">
+      Selesai dibaca
+    </button>
 
-      <section>
-        <h2>Selesai dibaca</h2>
+  </section>
 
-        <div id="completeBookList" data-testid="completeBookList"></div>
-      </section>
-    </main>
-  </body>
+
+  <!-- DAFTAR BUKU -->
+  <section class="bookListSection">
+
+    <div id="bookList"></div>
+
+  </section>
+
+</main>
+
+
+<!-- MODAL PESAN -->
+<div id="resultModal" class="modal">
+
+  <div class="modal-inner">
+
+    <div class="modal-content">
+
+      <p id="modalMessage"></p>
+
+      <button id="closeModal">
+        Tutup
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
 </html>
