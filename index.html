@@ -6,21 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bookshelf App</title>
 
-  <!-- Impor script kamu di sini -->
-  <!-- Lampirkan `defer` jika pemanggilan dilakukan dalam <head> -->
   <script defer src="main.js"></script>
 
-  <!-- Style -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
     rel="stylesheet">
 
-  <!-- Link Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -80,10 +74,7 @@
             <button id="changeToCompleteButton">Selesai dibaca</button>
           </div>
           <div id="incompleteBookList" data-testid="incompleteBookList">
-            <!-- 
-                Ini adalah struktur HTML untuk masing-masing buku.
-                Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
-              -->
+  
             <div class="listContainer" data-bookid="123123123" data-testid="bookItem">
               <h3 data-testid="bookItemTitle">Judul Buku 1</h3>
               <p data-testid="bookItemAuthor">Penulis: Penulis Buku 1</p>
@@ -104,10 +95,7 @@
           </div>
 
           <div id="completeBookList" data-testid="completeBookList">
-            <!-- 
-                Ini adalah struktur HTML untuk masing-masing buku.
-                Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
-              -->
+            
             <div class="listContainer" data-bookid="456456456" data-testid="bookItem">
               <h3 data-testid="bookItemTitle">Judul Buku 2</h3>
               <p data-testid="bookItemAuthor">Penulis: Penulis Buku 2</p>
@@ -123,7 +111,6 @@
       </div>
     </div>
 
-    <!-- Modal Dialog Buku HTML -->
     <div id="resultModal" class="modal">
       <div class="modal-inner">
         <div class="modal-content" id="modal-content">
@@ -133,7 +120,6 @@
       </div>
     </div>
 
-    <!-- Modal Konfirmasi HTML -->
     <div id="confirmModal" class="modal">
       <div class="modal-inner">
         <div class="modal-content" id="modal-confirm-content">
