@@ -293,7 +293,8 @@ section h2 {
   width: 60%;
 }
 
-#emptyContainer, #emptySearch {
+#emptyContainer,
+#emptySearch {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -348,7 +349,8 @@ section h2 {
   border-bottom: 1px solid #db2810;
 }
 
-.modal-button, .confirm-modal-button {
+.modal-button,
+.confirm-modal-button {
   color: #eee;
   font-weight: bold;
   background-color: #252525;
@@ -373,8 +375,8 @@ section h2 {
   gap: 1rem;
 }
 
-#confirmButtonContainer>button {
-  padding: .5rem 1rem;
+#confirmButtonContainer > button {
+  padding: 0.5rem 1rem;
   font-size: 16px;
 }
 /* MODAL DIALOG END */
@@ -400,11 +402,13 @@ section h2 {
   }
 
   /* MODAL DIALOG */
-  #modalMessage, #modalConfirmMessage {
-    font-size: .9rem;
+  #modalMessage,
+  #modalConfirmMessage {
+    font-size: 0.9rem;
   }
 
-  .modal-button, #confirmButtonContainer>button {
+  .modal-button,
+  #confirmButtonContainer > button {
     padding: 0.2rem 0.5rem;
     font-size: 1.1rem;
   }
@@ -461,7 +465,8 @@ section h2 {
     width: 45%;
   }
 
-  #modalMessage, #modalConfirmMessage {
+  #modalMessage,
+  #modalConfirmMessage {
     font-size: 1.3rem;
   }
 
@@ -470,7 +475,7 @@ section h2 {
     font-size: 1.3rem;
   }
 
-  #confirmButtonContainer>button {
+  #confirmButtonContainer > button {
     font-size: 14px;
   }
   /* MODAL DIALOG END */
@@ -526,7 +531,8 @@ section h2 {
     width: 75%;
   }
 
-  #modalMessage, #modalConfirmMessage {
+  #modalMessage,
+  #modalConfirmMessage {
     font-size: 1rem;
   }
 
@@ -535,7 +541,7 @@ section h2 {
     font-size: 1rem;
   }
 
-  #confirmButtonContainer>button {
+  #confirmButtonContainer > button {
     font-size: 14px;
   }
   /* MODAL DIALOG END */
