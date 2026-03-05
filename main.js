@@ -23,6 +23,12 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".notCompletedRead").style.display = "block";
   });
 
+  const closeModal = document.getElementById("closeModal");
+
+    closeModal.addEventListener("click", function () {
+    document.getElementById("resultModal").style.display = "none";
+  });
+
 });
 
 function addBook() {
@@ -36,6 +42,16 @@ function addBook() {
   books.push(bookObject);
 
   document.dispatchEvent(new Event(RENDER_EVENT));
+
+  // tampilkan dialog
+  const modal = document.getElementById("resultModal");
+  const modalMessage = document.getElementById("modalMessage");
+
+  modalMessage.innerText = `Buku "${title}" berhasil ditambahkan`;
+  modal.style.display = "block";
+
+  // reset form
+  document.getElementById("bookForm").reset();
 }
 
 function generateBookObject(title, author, year, isComplete) {
