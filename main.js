@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("bookFormIsComplete").checked;
 
     if (!newBookTitle || !newBookAuthor || !newBookYear) {
-      // If any field is empty, display the error message
       const modalMessage = `Lengkapi data buku terlebih dahulu!`;
       document.getElementById("modalMessage").textContent = modalMessage;
       document.getElementById("resultModal").style.display = "block";
@@ -48,12 +47,10 @@ document.addEventListener("DOMContentLoaded", function () {
       newBookCompleted
     );
 
-    // Add the book object to the book list
     bookList.push(bookObject);
     document.dispatchEvent(new Event(RENDER_EVENT));
     saveBookData();
 
-    // Display success message in the modal
     const modalMessage = bookObject.isComplete
       ? `Data buku '${newBookTitle}' ditambahkan ke rak 'Selesai dibaca'.`
       : `Data buku '${newBookTitle}' ditambahkan ke rak 'Belum selesai dibaca'.`;
@@ -80,15 +77,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const notCompletedBookList = document.getElementById("incompleteBookList");
     const completedBookList = document.getElementById("completeBookList");
 
-    // Clear previous list contents
     notCompletedBookList.innerHTML = "";
     completedBookList.innerHTML = "";
 
-    // Filter books into completed and incomplete
     const completeBooks = bookList.filter((book) => book.isComplete);
     const incompleteBooks = bookList.filter((book) => !book.isComplete);
 
-    // Function to create the empty list message
     function createEmptyListMessage() {
       const emptyContainer = document.createElement("div");
       const emptyPic = document.createElement("i");
@@ -103,7 +97,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return emptyContainer;
     }
 
-    // Handle completed books
     if (completeBooks.length === 0) {
       completedBookList.append(createEmptyListMessage());
     } else {
@@ -113,7 +106,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // Handle incomplete books
     if (incompleteBooks.length === 0) {
       notCompletedBookList.append(createEmptyListMessage());
     } else {
@@ -247,51 +239,41 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function deleteBook(bookId) {
-      // Temukan buku berdasarkan bookId
       const bookTarget = findBook(bookId);
 
-      if (bookTarget == null) return; // Jika buku tidak ditemukan, keluar dari fungsi
+      if (bookTarget == null) return;
 
       const modalConfirmMessage = `Yakin ingin hapus data buku "${bookTarget.title}"?`;
 
-      // Menampilkan pesan konfirmasi di modal
       document.getElementById("modalConfirmMessage").textContent =
         modalConfirmMessage;
       const confirmModal = document.getElementById("confirmModal");
       confirmModal.style.display = "block";
 
-      // Fungsi untuk mengonfirmasi penghapusan buku
       const confirmDelete = function () {
-        // Mencari index buku berdasarkan bookId
+
         const bookIndex = findBookIndex(bookId);
-        if (bookIndex === -1) return; // Jika buku tidak ditemukan, keluar dari fungsi
+        if (bookIndex === -1) return;
 
         const bookTitle = bookList[bookIndex].title;
 
-        // Hapus buku hanya pada index yang ditemukan
-        bookList.splice(bookIndex, 1); // Menghapus satu buku pada index yang tepat
+        bookList.splice(bookIndex, 1);
 
-        // Panggil event untuk me-render ulang tampilan
         document.dispatchEvent(new Event(RENDER_EVENT));
 
-        // Tampilkan pemberitahuan bahwa buku berhasil dihapus
         const modalMessage = `Data buku "${bookTarget.title}" telah dihapus`;
 
         document.getElementById("modalMessage").textContent = modalMessage;
         document.getElementById("resultModal").style.display = "block";
 
-        // Simpan data buku yang telah diperbarui
         saveBookData();
 
-        // Menutup modal setelah penghapusan
         confirmModal.style.display = "none";
       };
 
-      // Menambahkan event listener hanya sekali
       const confirmDeleteButton = document.getElementById("confirmDelete");
       confirmDeleteButton.addEventListener("click", confirmDelete);
 
-      // Menambahkan event listener untuk membatalkan penghapusan
       const cancelDeleteButton = document.getElementById("cancelDelete");
       cancelDeleteButton.addEventListener("click", function cancelDelete() {
         confirmDeleteButton.removeEventListener("click", confirmDelete);
@@ -444,20 +426,6 @@ document.addEventListener("DOMContentLoaded", function () {
     return bookItem;
   }
 
-  // function createEmptySearchMessage() {
-  //   const emptyContainer = document.createElement("div");
-  //   const emptyPic = document.createElement("i");
-  //   const emptyList = document.createElement("p");
-
-  //   emptyPic.setAttribute("class", "fas fa-folder-open");
-  //   emptyPic.setAttribute("id", "emptyPicture");
-  //   emptyList.textContent = "Buku yang dicari tidak ditemukan di rak ini.";
-
-  //   emptyContainer.append(emptyPic, emptyList);
-  //   emptyContainer.setAttribute("id", "emptySearch");
-  //   return emptyContainer;
-  // }
-
   document
     .getElementById("searchSubmit")
     .addEventListener("click", function (ev) {
@@ -465,11 +433,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const searchBook = document
         .getElementById("searchBookTitle")
         .value.toLowerCase()
-        .trim(); // Ensure whitespace is trimmed
+        .trim();
 
-      // Skip search if input is empty
       if (searchBook === "") {
-        // Show all books and remove "no results" message
         const bookSearchListByTitle = document.querySelectorAll(
           ".listContainer > h3"
         );
@@ -488,7 +454,6 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       let foundCount = 0;
 
-      // Iterate over the book titles
       for (let searchResult of bookSearchListByTitle) {
         if (searchResult.innerText.toLowerCase().includes(searchBook)) {
           searchResult.parentElement.style.display = "block";
@@ -498,7 +463,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
-      // Show the modal message based on search results
       const modalMessage =
         foundCount > 0
           ? `Ditemukan ${foundCount} buku yang cocok.`
@@ -507,7 +471,6 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("resultModal").style.display = "block";
     });
 
-  // Menutup modal jika tombol close ditekan
   document.getElementById("closeModal").addEventListener("click", function () {
     document.getElementById("resultModal").style.display = "none";
   });
