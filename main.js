@@ -139,13 +139,10 @@ document.addEventListener("DOMContentLoaded", function () {
     return container;
   }
 
-  function toggleBook(bookId) {
-    const book = findBook(bookId);
-
-    if (!book) return;
-
-    book.isComplete = !book.isComplete;
-
+  function toggleBook(bookId){
+    const index = findBookIndex(bookId);
+    if(index === -1) return;
+    bookList[index].isComplete = !bookList[index].isComplete;
     document.dispatchEvent(new Event(RENDER_EVENT));
     saveData();
   }
